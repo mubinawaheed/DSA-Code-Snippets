@@ -1,5 +1,6 @@
 from pyarray import Array
 lst = Array(8)
+
 for i in range(lst.size-1):
     lst[i] = i+1
     
