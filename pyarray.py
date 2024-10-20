@@ -5,11 +5,11 @@
 import ctypes
 
 class Array():
-    def __init__(self, n):
+    def __init__(self, n, initialValue=None):
         assert n > 0 , 'Array cannot contain 0 elements'
         self.size = n
         self.elements = (ctypes.py_object * n)()
-        self.clear(None) # will place none in all elements of array
+        self.clear(initialValue) # will place none in all elements of array
         
     def __len__(self):
         return self.size
