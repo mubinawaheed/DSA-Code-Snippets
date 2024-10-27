@@ -72,6 +72,20 @@ def  insertBefore(head, x, value): # delete a node after the node containing x
            nodeX[1].next = node
     return  head
 
+def insertTailNode(head, value):
+    if head.head is None:
+        head.insert(value)
+    else:
+        a=head.head
+        while a.next is not None:
+            a=a.next
+        node = Node(value)
+        a.next = node
+    return head
+        
+
+            
+    
 def deleteNodeContainingX(head,  x): # delete a node containing x
     nodeX = head.search(x)
     if(nodeX[0]==True):
@@ -96,3 +110,5 @@ deleteNodeContainingX(lst,3)
 lst.traverse()
 length=len(lst)
 print(length)
+insertTailNode(lst, 5)
+lst.traverse()
