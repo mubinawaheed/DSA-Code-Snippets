@@ -6,34 +6,34 @@ class Node:
 # implement search, insert, traverse, delete and len functions for it
 class LinkedList:
     def __init__(self):
-        self.head = None # head points to a node
+        self.head = None # head points to the first node
         self.size = 0
         
-    def insert(self, value):
+    def insert(self, value): #inserts a node at the beginning
         node = Node(value)
         node.next = self.head
         self.head = node
         
     def __len__(self):
         count=0
-        currentPointer =  self
+        currentPointer =  self.head
         while currentPointer is not None:
             count+=1
             currentPointer = currentPointer.next
         return count
     
     def traverse(self):
+        print("Traversing linked list!...")
         if(self.head is None):
             print("Empty list")
             return False
         pointer=self.head
         while pointer is not None:
-            print(f'Node value: {pointer.data}', end=" ")
+            print(f'Node value: {pointer.data}')
             pointer = pointer.next
         
     def search(self, target): # returns the pointer of the node before target node and the target node
         a  = self.head
-        
         if(a.data == target):
             return [True, None, a]
         b=a.next
@@ -52,13 +52,47 @@ class LinkedList:
         self.head = self.head.next
         return temp
 
-        
-lst = LinkedList()
-lst.insert(5)
-lst.insert(4)
-lst.insert(3)
-lst.insert(2)
-lst.insert(1)
-node = lst.search(1)
-print(node)
+def insertAfter(head, x, value): # insert a node after the node containing x
+    nodeX = head.search(x)
+    if(nodeX[0]==True):
+        node = Node(value)
+        node.next = nodeX[2].next
+        nodeX[2].next = node
+    return head
+            
+def  insertBefore(head, x, value): # delete a node after the node containing x
+    nodeX = head.search(x)
+    node = Node(value)
+    node.next = nodeX[2]
+    
+    if(nodeX[0]==True):
+        if (nodeX[1] is None):
+            head.head =  node
+        else:
+           nodeX[1].next = node
+    return  head
 
+def deleteNodeContainingX(head,  x): # delete a node containing x
+    nodeX = head.search(x)
+    if(nodeX[0]==True):
+        if(nodeX[1] is None):
+            head.delete()
+        else:
+            nodeX[1].next = nodeX[2].next
+    return head
+
+def buildList(lst):
+    assert  len(lst) > 0,  "List is empty"
+    head = LinkedList()
+    head.insert(lst[-1])
+    a=head
+    for  i in range(len(lst)-2, -1, -1):
+        a.insert(lst[i])
+    return  head
+
+        
+lst=buildList([1,2,3,4])
+deleteNodeContainingX(lst,3)
+lst.traverse()
+length=len(lst)
+print(length)
