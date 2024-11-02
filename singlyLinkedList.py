@@ -104,11 +104,39 @@ def buildList(lst):
         a.insert(lst[i])
     return  head
 
+def circularizeSLL(pointer): # converts a SLL into circular SLL
+    if pointer is None:
+        return "Empty lst"
+    a=pointer
+    while a.next is not None:
+        a=a.next
+    a.next=pointer
+    return pointer
+
+def linearizeCSLL(pointer): # converts  a CSLL into SLL O(n)
+    if pointer is None:
+        return "Empty lst"
+    a=pointer
+    while a.next is not pointer:
+        a=a.next
+    a.next = None
+    return pointer
+
+def traverseCircularSSL(pointer):  # traverse a circular SLL O(n)
+    if pointer is None:
+        return "Empty lst"
+    a=pointer
+    while a.next is not pointer:
+        print(a.data, end=" ")
+        a=a.next
+    print(a.data)
+
+
         
 lst=buildList([1,2,3,4])
-deleteNodeContainingX(lst,3)
+print("TYPE:",type(lst))
 lst.traverse()
-length=len(lst)
-print(length)
-insertTailNode(lst, 5)
-lst.traverse()
+circularizeSLL(lst.head)
+# lst.traverse() # POV it is a CSLL: It will get stuck in the traverse function because it wont find any node with next set to none:
+# linearizeCSLL(lst.head)
+traverseCircularSSL(lst.head)
