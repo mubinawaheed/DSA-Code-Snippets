@@ -57,7 +57,20 @@ class DLLNode:
         r.right = q
         q.left = r
         return r
-
+    
+    def  search(self, val):
+        b = self
+        while b is not None and b.data !=val:
+            b = b.right
+        if b is not None:
+            return b
+        b = self.left
+        while b is not None and b.data != val:
+            b = b.left
+        if b is not None:
+            return b
+        
+        return "Not found"
 
         
         
@@ -77,4 +90,6 @@ dll.traverse()
 dll.insertRight(16)
 dll = dll.delete()
 dll.traverse()
+node=dll.search(171)
+print("FOUND", node.data)
 print("Length of list",len(dll))
