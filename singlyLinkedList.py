@@ -133,10 +133,15 @@ def traverseCircularSSL(pointer):  # traverse a circular SLL O(n)
 
 
         
-lst=buildList([1,2,3,4])
-print("TYPE:",type(lst))
-lst.traverse()
-circularizeSLL(lst.head)
-# lst.traverse() # POV it is a CSLL: It will get stuck in the traverse function because it wont find any node with next set to none:
-# linearizeCSLL(lst.head)
-traverseCircularSSL(lst.head)
+# lst=buildList([1,2,3,4])
+# print("TYPE:",type(lst))
+# lst.traverse()
+# circularizeSLL(lst.head)
+# # lst.traverse() # POV it is a CSLL: It will get stuck in the traverse function because it wont find any node with next set to none:
+# # linearizeCSLL(lst.head)
+# traverseCircularSSL(lst.head)
+# lst= LinkedList()
+# lst.insert(1)
+# lst.insert(2)
+# lst.delete()
+# print("hey")
