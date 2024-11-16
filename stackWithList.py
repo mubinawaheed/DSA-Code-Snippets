@@ -14,8 +14,8 @@ class Stack:
         raise Exception("Stack underFlow")
 
 
-stack = Stack()
-stack.push(3)
-stack.push(13)
-stack.push(23)
-print(stack.pop())
+# stack = Stack()
+# stack.push(3)
+# stack.push(13)
+# stack.push(23)
+# print(stack.pop())
