@@ -75,3 +75,9 @@ class BTree:
             return False
         
         return self.lc.isStrictlyBT() and self.rc.isStrictlyBT()
+    
+    def isPerfectBT(self):
+        h = self.height()
+        n = self.nodeCount()
+        m = pow(2,h) -1
+        return n == m   
