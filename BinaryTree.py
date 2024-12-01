@@ -114,13 +114,20 @@ class BinaryTree:
         return self
     
     def inOrderTraversal(self):
-        if(self.lc is not None):
-            self.lc.inOrderTraversal()
-        print(self.data, end=' ')
-        if(self.rc is not None):
-            self.rc.inOrderTraversal()
-        
+        res=[]
+        def inOrder(root):
+            if(root.lc is not None):
+                # root.lc.inOrderTraversal()
+                inOrder(root.lc)
+            # print(self.data, end=' ')
+            res.append(root.data)
+            if(root.rc is not None):
+                # root.rc.inOrderTraversal()
+                inOrder(root.rc)
+        inOrder(self)
+        return res
 
 lst = [1,2,4,5,3,6,7]
 bt = BinaryTree(lst[0])
 tree=bt.build(lst)
+print(tree.inOrderTraversal())
