@@ -1,4 +1,7 @@
-class BTree:
+from typing import List, Optional
+
+
+class BinaryTree:
     def __init__(self, val):
         self.rc=None
         self.lc=None
@@ -6,11 +9,11 @@ class BTree:
         
     def insertRight(self, val):
         if self.rc is None:
-            self.rc = BTree(val)
+            self.rc = BinaryTree(val)
             
     def insertLeft(self, val):
         if self.lc is None:
-            self.lc = BTree(val)
+            self.lc = BinaryTree(val)
             
     def deleteLeftChild(self): # It deletes a left child of a node pointed to by self. And the left child must be a leaf node.
         assert self.lc is not None, "Left child absent"
@@ -81,3 +84,43 @@ class BTree:
         n = self.nodeCount()
         m = pow(2,h) -1
         return n == m   
+    
+    def insert(self, data): # it builds a binary search tree
+        if self.data is None:
+            self.data = data
+        else:
+            if data < self.data:
+                if self.lc is None:
+                    self.lc = BinaryTree(data)
+                else:
+                    self.lc.insert(data)
+            elif(data>self.data):
+                if self.rc is None:
+                    self.rc = BinaryTree(data)
+                else:
+                    self.rc.insert(data)
+  
+    def build(self, lst): # requires a list in pre-orderal - Not Correct
+        leftSubTree = lst[1:(len(lst)//2)+1]
+        self.lc = BinaryTree(leftSubTree[0])
+        if(len(leftSubTree)>1):
+            self.lc.build(leftSubTree)
+            
+        
+        rightSubTree = lst[len(lst)//2 + 1:]
+        self.rc = BinaryTree(rightSubTree[0])
+        if(len(rightSubTree)>1):
+            self.rc.build(rightSubTree)
+        return self
+    
+    def inOrderTraversal(self):
+        if(self.lc is not None):
+            self.lc.inOrderTraversal()
+        print(self.data, end=' ')
+        if(self.rc is not None):
+            self.rc.inOrderTraversal()
+        
+
+lst = [1,2,4,5,3,6,7]
+bt = BinaryTree(lst[0])
+tree=bt.build(lst)
